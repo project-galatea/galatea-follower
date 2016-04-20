@@ -1,0 +1,3 @@
+[submodule "galatea"]
+	path = galatea
+	url = https://github.com/project-galatea/galatea.git
