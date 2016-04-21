@@ -35,6 +35,17 @@ class Follower():
 
     def handleConn(self, conn):
 
+        data = conn.recv(4096)
+        if data:
+            hello = ipcMessage_pb2.Hello()
+            hello.ParseFromString(data)
+
+            if not hello.response:
+                respHello = ipcMessage_pb2.Hello()
+                respHello.response = True
+
+                conn.send(respHello.SerializeToString())
+
         while True:
 
             #Receiving from client
@@ -54,6 +65,7 @@ class Follower():
             respMsg.text = self.chatDict[msg.chatId].runNN()
             respMsg.chatId = msg.chatId
             respMsg.userId = msg.userId
+            respMsg.time = msg.time
 
             conn.send(respMsg.SerializeToString())
 
