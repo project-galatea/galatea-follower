@@ -45,13 +45,13 @@ class Follower():
             msg = ipcMessage_pb2.Message()
             msg.ParseFromString(data)
 
-            if msg.chatId not in chatDict:
-                chatDict[msg.chatId] = chat.Chat(self.g)
+            if msg.chatId not in self.chatDict:
+                self.chatDict[msg.chatId] = chat.Chat(self.g)
 
-            chatDict[msg.chatId].addMessage(msg)
+            self.chatDict[msg.chatId].addMessage(msg)
 
             respMsg = ipcMessage_pb2.Message()
-            respMsg.text = chatDict[msg.chatId].runNN()
+            respMsg.text = self.chatDict[msg.chatId].runNN()
             respMsg.chatId = msg.chatId
             respMsg.userId = msg.userId
 
