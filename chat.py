@@ -2,8 +2,9 @@ from collections import deque
 
 class Chat():
     """docstring for Chat"""
-    def __init__(self):
+    def __init__(self, nn):
         self.latestMessages = deque(maxlen=20)
+        self.nn = nn
 
     def addMessage(self, msg):
         if len(self.latestMessages) >= self.latestMessages.maxlen:

@@ -46,7 +46,7 @@ class Follower():
             msg.ParseFromString(data)
 
             if msg.chatId not in chatDict:
-                chatDict[msg.chatId] = chat.Chat()
+                chatDict[msg.chatId] = chat.Chat(self.g)
 
             chatDict[msg.chatId].addMessage(msg)
 
