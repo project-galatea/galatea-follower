@@ -6,6 +6,7 @@ import sys
 import ipcMessage_pb2
 import chat
 from thread import *
+from galatea.galatea import Galatea
 
 class Follower():
     def __init__(self, port):
@@ -13,8 +14,11 @@ class Follower():
         self.port = port
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
+        self.load_nn()
+
         self.socket.bind((self.host, self.port))
         self.socket.listen(10)
+        print "Listening..."
 
         while 1:
             conn, addr = self.socket.accept()
@@ -22,6 +26,9 @@ class Follower():
             start_new_thread(handleConn ,(conn,))
 
         self.socket.close()
+
+    def load_nn(self):
+        self.g = Galatea()
 
 chatDict = dict()
 
@@ -51,6 +58,6 @@ def handleConn(conn):
 
 
     conn.close()
-    
+
 if __name__ == '__main__':
     Follower(24833)
