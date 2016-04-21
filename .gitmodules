@@ -1,3 +1,6 @@
 [submodule "galatea"]
 	path = galatea
 	url = https://github.com/project-galatea/galatea.git
+[submodule "galatea-ipc"]
+	path = galatea-ipc
+	url = git@github.com:project-galatea/galatea-ipc.git
