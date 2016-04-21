@@ -51,5 +51,6 @@ def handleConn(conn):
 
 
     conn.close()
-
-Follower(24833)
+    
+if __name__ == '__main__':
+    Follower(24833)
