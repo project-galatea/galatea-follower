@@ -1,2 +1,2 @@
 # Galatea Slave
-Severs that manage the chats and the AI
+Servers that manage the chats and the AI

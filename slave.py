@@ -8,7 +8,7 @@ import chat
 from thread import *
 from galatea.galatea import Galatea
 
-class Follower():
+class Slave():
     def __init__(self, port):
         self.host = ''
         self.port = port
@@ -73,4 +73,4 @@ class Follower():
         conn.close()
 
 if __name__ == '__main__':
-    Follower(24833)
+    Slave(24833)
