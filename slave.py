@@ -62,12 +62,14 @@ class Slave():
             self.chatDict[msg.chatId].addMessage(msg)
 
             respMsg = ipcMessage_pb2.Message()
-            respMsg.text = self.chatDict[msg.chatId].runNN()
-            respMsg.chatId = msg.chatId
-            respMsg.userId = msg.userId
-            respMsg.time = msg.time
+            if msg.respond:
+                respMsg.text = self.chatDict[msg.chatId].runNN()
+                respMsg.chatId = msg.chatId
+                respMsg.userId = msg.userId
+                respMsg.time = msg.time
+                respMsg.respond = True
 
-            conn.send(respMsg.SerializeToString())
+                conn.send(respMsg.SerializeToString())
 
 
         conn.close()
