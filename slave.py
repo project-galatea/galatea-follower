@@ -9,18 +9,28 @@ from thread import *
 from galatea.galatea import Galatea
 
 class Slave():
-    def __init__(self, port):
+    def __init__(self, port, logger):
+
+        self._logger = logger
+
+        self._logger.info("Slave init start")
+
         self.host = ''
         self.port = port
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
+        self._logger.info("Slave init sockets")
+
         self.chatDict = dict()
 
+        self._logger.info("Slave init start nn")
         self.load_nn()
+        self._logger.info("Slave init end nn")
 
         self.socket.bind((self.host, self.port))
         self.socket.listen(10)
-        print "Listening..."
+
+        self._logger.info("Slave listening to socket")
 
         while 1:
             conn, addr = self.socket.accept()
